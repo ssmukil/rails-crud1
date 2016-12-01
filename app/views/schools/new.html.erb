@@ -1,0 +1,100 @@
+
+<!-- <html>
+<body> -->
+
+<div class="header1" >
+<!-- <h1>Schools</h1> -->
+<div class="header2">
+<div class="hd1"><%=image_tag("logo.jpg",:class => "img1" , alt: "Image1")%>   User Management Portal</div>
+<div class="hd2">
+<%=image_tag("logo3.jpg",:class => "img1" , alt: "Image")%>  REGISTRATION PORTAL
+</div>
+<div class="hd3"><%=image_tag("logo2.jpg",:class => "img3" , alt: "Image1")%>   Content Portal
+</div>
+</div>
+</div>
+
+<h5>NEW SCHOOL DETAILS</h5>
+
+<%= render 'form', schools: @school%>
+
+
+<br>
+<br>
+
+<%= link_to 'Back', schools_path,class:"waves-effect waves-light  red btn" %>
+
+</body>
+
+<script type="text/javascript">
+	var iChars = "!@#$%^&*()+=-_[]\\\';,./{}|\":<>?~`";
+var numbers = "0123456789";
+
+$(document).ready(function(){
+  var input = document.getElementsByClassName("school-create-validation")
+  $('#submit').on('click', function() { 
+    // alert('asas')
+
+     for(var i=0; i<input.length; i++) {
+
+           if($(input[i]).next().attr('data-error').length > 0) {
+            input[i].attr('autofocus', true)
+            break;
+           }
+           input[i].attr('autofocus', false)
+      
+   }
+});
+   var label = document.getElementsByClassName('error-first');
+   console.log(label)
+   
+   console.log(input);
+
+   for(var i=0; i<input.length; i++) {
+       $(input[i]).bind("change focusout", function() {
+console.log(label[0])
+           validation($(this), $(this).next())
+       });
+   }
+
+   function validation(inputValue, labelValues) {
+   var input = inputValue.val().trim();
+   var labelValue = labelValues[0];
+   console.log($(inputValue).attr('id'))
+       if(input === ''){
+             $(labelValue).attr('data-error', "cannot be empty")
+             return $(inputValue).addClass("invalid").removeClass("valid");
+       }
+       if($(inputValue).attr('id') === 'pincode'){
+           if( input.length === 6){
+            $(labelValue).attr('data-error', "")
+               return $(inputValue).addClass( "valid" ).removeClass("invalid");
+           }
+           else{
+            $(labelValue).attr('data-error', "only 6 digits")
+               return $(inputValue).addClass( "invalid" ).removeClass("valid");
+           }
+       }
+      else{
+              for(var i = 0; i<input.length; i++) {
+        if(iChars.indexOf(input[i]) != -1) {
+            $(inputValue).addClass( "invalid" );
+            $(labelValue).attr('data-error', 'special character not allowed')
+         // alert("e4")
+         return ''
+        }
+        if(numbers.indexOf(input[i]) != -1) {
+            $(inputValue).addClass( "invalid" );
+            $(labelValue).attr('data-error', 'number not allowed')
+         // alert("e5")
+         return ''
+        }
+     }
+      }
+     // alert("s");
+     $(inputValue).addClass("valid").removeClass("invalid");
+   }
+   })
+</script>
+
+</html>

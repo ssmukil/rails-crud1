@@ -1,0 +1,81 @@
+  <%= form_for @school do |f| %>
+  <div class="main">
+
+     <div class=diva>
+School Name:  
+<div class="div1"> 
+<div class="row s6">
+  <div class="input-field col s6 ">
+     <%= f.text_field :schoolname ,id:"schoolname", class:' school-create-validation', placeholder: "School Name" %>
+      <label for="schoolname" data-error="wrong" data-success="" class="error-first"></label>
+   </div>
+</div>
+</div>
+  Address:
+  <div class="div1">  
+  <div class="row s6">
+  <div class="input-field col s6">
+     <%= f.text_field :address ,id:"address",required: true, class:' school-create-validation', placeholder: "Address" %>
+      <label for="address" data-error="wrong" data-success="" class="error-first"></label>
+   </div>
+</div>
+  </div>
+
+City:
+  <div class="div1">    
+    <div class="row s6">
+    <div class="input-field col s6">
+     <%= f.text_field :city ,id:"city",required: true, class:' school-create-validation', placeholder: "City" %>
+      <label for="city" data-error="wrong" data-success="" class="error-first"></label>
+   </div>
+</div>
+  </div>
+
+State:
+  <div class="div1">   
+   <div class="row s6">
+    <div class="input-field col s6">
+     <%= f.text_field :state ,id:"state",required: true, class:' school-create-validation', placeholder: "State" %>
+      <label for="state" data-error="wrong" data-success="" class="error-first"></label>
+   </div>
+</div>
+
+  </div>
+
+Pincode:
+  <div class="div1">   
+    <div class="row s6">
+    <div class="input-field col s6">
+     <%= f.number_field :pincode ,id:"pincode",required: true,minlength: 6,class:' school-create-validation', placeholder: "Pincode" %>
+      <label for="pincode" data-error="6-Digits-Need" data-success="" class="error-first"></label>
+   </div>
+      <!-- placehlder:'number',:maxlength => 6,:message => "Put digit value please"   -->
+    <!-- :in => 3..6,min: 6, max: 6, -->
+  </div>
+
+  </div>
+  </div>
+  <div class="div2">
+   <h6> AFFILIATED BOARD </h6>
+   
+  <div class="field" class="with-gap">
+      
+    <%= f.radio_button :board, 'cbse' ,:checked => true %>
+    <%= f.label :board,'CBSE',:value => 'cbse' %>
+    <%= f.radio_button :board,'ibse' %>    
+    <%= f.label :board,'IBSE',:value => 'ibse' %>
+    <%= f.radio_button :board, 'matric' %>
+     <%= f.label :board, 'MATRIC', :value => 'matric' %><br>
+     <%= f.radio_button :board, 'stateboard' %>
+     <%= f.label :board, 'STATEBOARD', :value => 'stateboard' %>
+
+  </div>
+
+</div>
+
+</div>
+  <div class="actions">
+    <%= f.submit id:"submit"%>
+  
+
+<% end %>
